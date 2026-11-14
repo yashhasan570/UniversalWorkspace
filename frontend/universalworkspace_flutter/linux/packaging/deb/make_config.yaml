@@ -1,0 +1,36 @@
+display_name: UniversalWorkspace
+package_name: universalworkspace
+
+maintainer:
+  name: UniversalWorkspace
+  email: support@universalworkspace.io
+
+keywords:
+  - UniversalWorkspace
+  - Office
+  - Document
+  - Database
+  - Note
+  - Kanban
+  - Note
+
+installed_size: 100000
+icon: linux/packaging/assets/logo.png
+
+generic_name: UniversalWorkspace
+
+categories:
+  - Office
+  - Productivity
+
+startup_notify: true
+essential: false
+
+section: x11
+priority: optional
+
+supportedMimeType: x-scheme-handler/universalworkspace-flutter
+
+dependencies:
+  - libnotify-bin
+  - libkeybinder-3.0-0

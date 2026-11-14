@@ -1,0 +1,229 @@
+import 'dart:io';
+
+import 'package:universalworkspace/mobile/application/mobile_router.dart';
+import 'package:universalworkspace/mobile/application/page_style/document_page_style_bloc.dart';
+import 'package:universalworkspace/mobile/application/recent/recent_view_bloc.dart';
+import 'package:universalworkspace/plugins/document/presentation/editor_plugins/header/emoji_icon_widget.dart';
+import 'package:universalworkspace/plugins/document/presentation/editor_plugins/plugins.dart';
+import 'package:universalworkspace/shared/universalworkspace_network_image.dart';
+import 'package:universalworkspace/shared/uniflow_gradient_colors.dart';
+import 'package:universalworkspace/util/string_extension.dart';
+import 'package:universalworkspace/workspace/application/view/view_ext.dart';
+import 'package:universalworkspace_backend/protobuf/uniflow-folder/view.pb.dart';
+import 'package:universalworkspace_backend/protobuf/uniflow-user/protobuf.dart';
+import 'package:appflowy_editor/appflowy_editor.dart';
+import 'package:uniflow_infra_ui/uniflow_infra_ui.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
+import 'package:string_validator/string_validator.dart';
+
+class MobileRecentView extends StatelessWidget {
+  const MobileRecentView({
+    super.key,
+    required this.view,
+  });
+
+  final ViewPB view;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return BlocProvider<RecentViewBloc>(
+      create: (context) => RecentViewBloc(view: view)
+        ..add(
+          const RecentViewEvent.initial(),
+        ),
+      child: BlocBuilder<RecentViewBloc, RecentViewState>(
+        builder: (context, state) {
+          return GestureDetector(
+            onTap: () => context.pushView(view),
+            child: Stack(
+              children: [
+                DecoratedBox(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(color: theme.colorScheme.outline),
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Expanded(child: _buildCover(context, state)),
+                      Expanded(child: _buildTitle(context, state)),
+                    ],
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: _buildIcon(context, state),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildCover(BuildContext context, RecentViewState state) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 1.0, left: 1.0, right: 1.0),
+      child: ClipRRect(
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(8),
+          topRight: Radius.circular(8),
+        ),
+        child: _RecentCover(
+          coverTypeV1: state.coverTypeV1,
+          coverTypeV2: state.coverTypeV2,
+          value: state.coverValue,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTitle(BuildContext context, RecentViewState state) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(8, 18, 8, 2),
+      // hack: minLines currently not supported in Text widget.
+      // https://github.com/flutter/flutter/issues/31134
+      child: Stack(
+        children: [
+          UniflowText.medium(
+            view.name,
+            fontSize: 16.0,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          ),
+          const UniflowText(
+            "\n\n",
+            maxLines: 2,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildIcon(BuildContext context, RecentViewState state) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 8.0),
+      child: state.icon.isNotEmpty
+          ? RawEmojiIconWidget(emoji: state.icon, emojiSize: 30)
+          : SizedBox.square(
+              dimension: 32.0,
+              child: view.defaultIcon(),
+            ),
+    );
+  }
+}
+
+class _RecentCover extends StatelessWidget {
+  const _RecentCover({
+    required this.coverTypeV1,
+    this.coverTypeV2,
+    this.value,
+  });
+
+  final CoverType coverTypeV1;
+  final PageStyleCoverImageType? coverTypeV2;
+  final String? value;
+
+  @override
+  Widget build(BuildContext context) {
+    final placeholder = Container(
+      // random color, update it once we have a better placeholder
+      color:
+          Theme.of(context).colorScheme.onSurfaceVariant.withValues(alpha: 0.2),
+    );
+    final value = this.value;
+    if (value == null) {
+      return placeholder;
+    }
+    if (coverTypeV2 != null) {
+      return _buildCoverV2(context, value, placeholder);
+    }
+    return _buildCoverV1(context, value, placeholder);
+  }
+
+  Widget _buildCoverV2(BuildContext context, String value, Widget placeholder) {
+    final type = coverTypeV2;
+    if (type == null) {
+      return placeholder;
+    }
+    if (type == PageStyleCoverImageType.customImage ||
+        type == PageStyleCoverImageType.unsplashImage) {
+      final userProfilePB = Provider.of<UserProfilePB?>(context);
+      return UniflowNetworkImage(
+        url: value,
+        userProfilePB: userProfilePB,
+      );
+    }
+
+    if (type == PageStyleCoverImageType.builtInImage) {
+      return Image.asset(
+        PageStyleCoverImageType.builtInImagePath(value),
+        fit: BoxFit.cover,
+      );
+    }
+
+    if (type == PageStyleCoverImageType.pureColor) {
+      final color = value.coverColor(context);
+      if (color != null) {
+        return ColoredBox(
+          color: color,
+        );
+      }
+    }
+
+    if (type == PageStyleCoverImageType.gradientColor) {
+      return Container(
+        decoration: BoxDecoration(
+          gradient: UniflowGradientColor.fromId(value).linear,
+        ),
+      );
+    }
+
+    if (type == PageStyleCoverImageType.localImage) {
+      return Image.file(
+        File(value),
+        fit: BoxFit.cover,
+      );
+    }
+
+    return placeholder;
+  }
+
+  Widget _buildCoverV1(BuildContext context, String value, Widget placeholder) {
+    switch (coverTypeV1) {
+      case CoverType.file:
+        if (isURL(value)) {
+          final userProfilePB = Provider.of<UserProfilePB?>(context);
+          return UniflowNetworkImage(
+            url: value,
+            userProfilePB: userProfilePB,
+          );
+        }
+        final imageFile = File(value);
+        if (!imageFile.existsSync()) {
+          return placeholder;
+        }
+        return Image.file(
+          imageFile,
+        );
+      case CoverType.asset:
+        return Image.asset(
+          value,
+          fit: BoxFit.cover,
+        );
+      case CoverType.color:
+        final color = value.tryToColor() ?? Colors.white;
+        return Container(
+          color: color,
+        );
+      case CoverType.none:
+        return placeholder;
+    }
+  }
+}

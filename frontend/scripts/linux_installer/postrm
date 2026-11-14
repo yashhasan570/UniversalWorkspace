@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+if [ -e /usr/local/bin/universalworkspace ]; then
+rm /usr/local/bin/universalworkspace
+fi

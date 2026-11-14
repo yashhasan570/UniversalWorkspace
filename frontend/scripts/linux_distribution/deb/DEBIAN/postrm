@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+if [ -e /usr/bin/UniversalWorkspace ]; then
+    rm /usr/bin/UniversalWorkspace
+    rm /usr/bin/UniversalWorkspaceLauncher.sh
+fi

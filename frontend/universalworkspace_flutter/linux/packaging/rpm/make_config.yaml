@@ -1,0 +1,33 @@
+display_name: UniversalWorkspace
+icon: linux/packaging/assets/logo.png
+group: Applications/Office
+vendor: UniversalWorkspace
+packager: UniversalWorkspace
+packagerEmail: support@universalworkspace.io
+license: APGL-3.0
+url: https://github.com/yashhasan570/universalworkspace
+
+build_arch: x86_64
+
+keywords:
+  - UniversalWorkspace
+  - Office
+  - Document
+  - Database
+  - Note
+  - Kanban
+  - Note
+
+generic_name: UniversalWorkspace
+
+categories:
+  - Office
+  - Productivity
+
+startup_notify: true
+
+supportedMimeType: x-scheme-handler/universalworkspace-flutter
+
+requires:
+  - libnotify
+  - keybinder

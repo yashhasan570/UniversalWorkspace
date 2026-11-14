@@ -1,0 +1,83 @@
+import 'package:universalworkspace/mobile/presentation/database/field/mobile_field_bottom_sheets.dart';
+import 'package:universalworkspace/plugins/database/application/field/field_controller.dart';
+import 'package:universalworkspace/plugins/database/application/field/field_info.dart';
+import 'package:universalworkspace/plugins/database/grid/presentation/widgets/header/desktop_field_cell.dart';
+import 'package:uniflow_infra_ui/uniflow_infra_ui.dart';
+import 'package:flutter/material.dart';
+
+class MobileFieldButton extends StatelessWidget {
+  const MobileFieldButton.first({
+    super.key,
+    required this.viewId,
+    required this.fieldController,
+    required this.fieldInfo,
+  })  : radius = const BorderRadius.only(topLeft: Radius.circular(24)),
+        margin = const EdgeInsets.symmetric(vertical: 14, horizontal: 18),
+        index = null;
+
+  const MobileFieldButton({
+    super.key,
+    required this.viewId,
+    required this.fieldController,
+    required this.fieldInfo,
+    required this.index,
+  })  : radius = BorderRadius.zero,
+        margin = const EdgeInsets.symmetric(vertical: 14, horizontal: 12);
+
+  final String viewId;
+  final int? index;
+  final FieldController fieldController;
+  final FieldInfo fieldInfo;
+  final BorderRadius? radius;
+  final EdgeInsets? margin;
+
+  @override
+  Widget build(BuildContext context) {
+    Widget child = Container(
+      width: 200,
+      decoration: _getDecoration(context),
+      child: UniflowButton(
+        onTap: () =>
+            showQuickEditField(context, viewId, fieldController, fieldInfo),
+        radius: radius,
+        margin: margin,
+        leftIconSize: const Size.square(18),
+        leftIcon: FieldIcon(
+          fieldInfo: fieldInfo,
+          dimension: 18,
+        ),
+        text: UniflowText(
+          fieldInfo.name,
+          fontSize: 15,
+          overflow: TextOverflow.ellipsis,
+        ),
+      ),
+    );
+
+    if (index != null) {
+      child = ReorderableDelayedDragStartListener(index: index!, child: child);
+    }
+
+    return child;
+  }
+
+  BoxDecoration? _getDecoration(BuildContext context) {
+    final borderSide = BorderSide(
+      color: Theme.of(context).dividerColor,
+    );
+
+    if (index == null) {
+      return BoxDecoration(
+        borderRadius: const BorderRadiusDirectional.only(
+          topStart: Radius.circular(24),
+        ),
+        border: BorderDirectional(
+          top: borderSide,
+          start: borderSide,
+        ),
+      );
+    } else {
+      return null;
+    }
+  }
+}

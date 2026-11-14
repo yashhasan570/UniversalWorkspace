@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=UniversalWorkspace
+Icon=/usr/share/icons/hicolor/scalable/apps/universalworkspace.svg
+Exec=/usr/bin/UniversalWorkspace %U
+Categories=Network;Productivity;
+Keywords=Notes
+Terminal=false
+MimeType=x-scheme-handler/universalworkspace-flutter;

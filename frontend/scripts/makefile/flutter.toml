@@ -1,0 +1,331 @@
+[tasks.universalworkspace]
+mac_alias = "universalworkspace-macos"
+windows_alias = "universalworkspace-windows"
+linux_alias = "universalworkspace-linux"
+
+[tasks.universalworkspace-macos]
+dependencies = ["universalworkspace-core-release"]
+run_task = { name = [
+  "code_generation",
+  "flutter-build",
+  "copy-to-product",
+] }
+script_runner = "@shell"
+
+[tasks.universalworkspace-macos-universal]
+run_task = { name = [
+  "code_generation",
+  "flutter-build",
+  "copy-to-product",
+] }
+script_runner = "@shell"
+
+[tasks.universalworkspace-windows]
+dependencies = ["universalworkspace-core-release"]
+run_task = { name = [
+  "code_generation",
+  "set-app-version",
+  "flutter-build",
+  "copy-to-product",
+] }
+
+[tasks.universalworkspace-linux]
+dependencies = ["universalworkspace-core-release"]
+run_task = { name = [
+  "code_generation",
+  "set-app-version",
+  "flutter-build",
+  "copy-to-product",
+  "create-release-archive",
+] }
+script_runner = "@shell"
+
+[tasks.universalworkspace-ios]
+dependencies = ["universalworkspace-core-dev-ios"]
+run_task = { name = [
+  "code_generation",
+  "set-app-version",
+  "flutter-build-ios",
+  "copy-to-product-mobile",
+] }
+script_runner = "@shell"
+
+[tasks.universalworkspace-android]
+dependencies = ["universalworkspace-core-dev-android"]
+run_task = { name = [
+  "code_generation",
+  "set-app-version",
+  "flutter-build-android",
+  "copy-to-product-android",
+] }
+script_runner = "@shell"
+
+[tasks.universalworkspace-dev]
+mac_alias = "universalworkspace-macos-dev"
+windows_alias = "universalworkspace-windows-dev"
+linux_alias = "universalworkspace-linux-dev"
+
+[tasks.universalworkspace-ios-dev]
+dependencies = ["universalworkspace-core-dev-ios"]
+run_task = { name = [
+  "code_generation",
+  "flutter-build-ios",
+] }
+script_runner = "@shell"
+
+[tasks.universalworkspace-android-dev]
+dependencies = ["universalworkspace-core-dev-android"]
+run_task = { name = [
+  "code_generation",
+  "flutter-build-android",
+] }
+script_runner = "@shell"
+
+[tasks.universalworkspace-android-dev-ci]
+dependencies = ["universalworkspace-core-dev-android-ci"]
+run_task = { name = [
+  "code_generation",
+  "flutter-build-android-ci",
+] }
+script_runner = "@shell"
+
+[tasks.universalworkspace-macos-dev]
+dependencies = ["universalworkspace-core-dev"]
+run_task = { name = [
+  "code_generation",
+  "flutter-build",
+  "copy-to-product",
+] }
+script_runner = "@shell"
+
+[tasks.universalworkspace-windows-dev]
+dependencies = ["universalworkspace-core-dev"]
+run_task = { name = [
+  "code_generation",
+  "flutter-build",
+  "copy-to-product",
+] }
+
+[tasks.universalworkspace-linux-dev]
+dependencies = ["universalworkspace-core-dev"]
+run_task = { name = [
+  "code_generation",
+  "flutter-build",
+  "copy-to-product",
+] }
+script_runner = "@shell"
+
+[tasks.universalworkspace-make-product-dev]
+run_task = { name = ["set-app-version", "flutter-build", "copy-to-product"] }
+
+[tasks.copy-to-product]
+mac_alias = "copy-to-product-macos"
+windows_alias = "copy-to-product-windows"
+linux_alias = "copy-to-product-linux"
+
+[tasks.copy-to-product-mobile]
+script = [
+  """
+  product_path=${CARGO_MAKE_WORKSPACE_WORKING_DIRECTORY}/universalworkspace_flutter/product/${APP_VERSION}
+  output_path=${product_path}/${TARGET_OS}/${FLUTTER_OUTPUT_DIR}
+  if [ -d "${output_path}" ]; then
+    rm -rf ${output_path}/
+  fi
+  mkdir -p ${output_path}
+
+  product=${PRODUCT_NAME}.${PRODUCT_EXT}
+  cp -R ${CARGO_MAKE_WORKSPACE_WORKING_DIRECTORY}/universalworkspace_flutter/build/${TARGET_OS}/Build/Products/${FLUTTER_OUTPUT_DIR}/${product} \
+  ${output_path}/${product}
+  """,
+]
+script_runner = "@shell"
+
+[tasks.copy-to-product-android]
+script = [
+  """
+  product_path=${CARGO_MAKE_WORKSPACE_WORKING_DIRECTORY}/universalworkspace_flutter/product/${APP_VERSION}
+  output_path=${product_path}/${TARGET_OS}/${FLUTTER_OUTPUT_DIR}
+  if [ -d "${output_path}" ]; then
+    rm -rf ${output_path}/
+  fi
+  mkdir -p ${output_path}
+
+  product=${PRODUCT_NAME}-arm64-v8a-release.${PRODUCT_EXT}
+  cp -R ${CARGO_MAKE_WORKSPACE_WORKING_DIRECTORY}/universalworkspace_flutter/build/app/outputs/flutter-apk/app-arm64-v8a-release.apk \
+  ${output_path}/${product}
+  """,
+]
+script_runner = "@shell"
+
+[tasks.copy-to-product-macos]
+script = [
+  """
+  product_path=${CARGO_MAKE_WORKSPACE_WORKING_DIRECTORY}/universalworkspace_flutter/product/${APP_VERSION}
+  output_path=${product_path}/${TARGET_OS}/${FLUTTER_OUTPUT_DIR}
+  if [ -d "${output_path}" ]; then
+    rm -rf ${output_path}/
+  fi
+  mkdir -p ${output_path}
+
+  product=${PRODUCT_NAME}.${PRODUCT_EXT}
+  cp -R ${CARGO_MAKE_WORKSPACE_WORKING_DIRECTORY}/universalworkspace_flutter/build/${TARGET_OS}/Build/Products/${FLUTTER_OUTPUT_DIR}/${product} \
+  ${output_path}/${product}
+  """,
+]
+script_runner = "@shell"
+
+[tasks.copy-to-product-linux]
+script = [
+  """
+  product_path=${CARGO_MAKE_WORKSPACE_WORKING_DIRECTORY}/universalworkspace_flutter/product/${APP_VERSION}
+  output_path=${product_path}/${TARGET_OS}/${FLUTTER_OUTPUT_DIR}
+  if [ -d "${output_path}" ]; then
+    rm -rf ${output_path}/
+  fi
+  mkdir -p ${output_path}
+
+  product=${PRODUCT_NAME}
+  cp -R ${CARGO_MAKE_WORKSPACE_WORKING_DIRECTORY}/universalworkspace_flutter/build/${TARGET_OS}/${LINUX_ARCH}/${BUILD_FLAG}/bundle \
+  ${output_path}/${product}
+  """,
+]
+script_runner = "@shell"
+
+[tasks.copy-to-product-windows]
+script = [
+  """
+  product_path= set ${CARGO_MAKE_WORKSPACE_WORKING_DIRECTORY}/universalworkspace_flutter/product/${APP_VERSION}
+  output_path= set ${product_path}/${TARGET_OS}
+  if is_path_exists ${output_path}
+    rm -r ${output_path}/
+  fi
+  mkdir ${output_path}
+
+  product= set ${PRODUCT_NAME}
+  glob_cp ${CARGO_MAKE_WORKSPACE_WORKING_DIRECTORY}/universalworkspace_flutter/build/${TARGET_OS}/${BUILD_ARCHS}/runner/${FLUTTER_OUTPUT_DIR}/**/* \
+  ${output_path}/${product}
+  """,
+]
+script_runner = "@duckscript"
+
+
+# The following tasks will create an archive that will be used on the GitHub Releases section
+# The archives are created using different compression programs depending on the target OS
+# The archive will be composed of all files that are located in the /Release/UniversalWorkspace directory
+[tasks.create-release-archive]
+mac_alias = "create-release-archive-macos"
+windows_alias = "create-release-archive-windows"
+linux_alias = "create-release-archive-linux"
+
+[tasks.create-release-archive-linux]
+script = [
+  # "cd ${CARGO_MAKE_WORKSPACE_WORKING_DIRECTORY}/universalworkspace_flutter/product/${APP_VERSION}/${TARGET_OS}/Release",
+  # "tar -czf ${PRODUCT_NAME}-${TARGET_OS}-x86.tar.gz *",
+]
+
+[tasks.create-release-archive-windows]
+script = [
+  # TODO
+  # "cd ${CARGO_MAKE_WORKSPACE_WORKING_DIRECTORY}/universalworkspace_flutter/product/${VERSION}/${TARGET_OS}/Release/${PRODUCT_NAME}",
+  # "tar -czf ${PRODUCT_NAME}-${TARGET_OS}-x86.tar.gz *"
+]
+
+[tasks.create-release-archive-macos]
+script = [
+  # TODO
+  # "cd ${CARGO_MAKE_WORKSPACE_WORKING_DIRECTORY}/universalworkspace_flutter/product/${VERSION}/${TARGET_OS}/Release/${PRODUCT_NAME}",
+  # "tar -czf ${PRODUCT_NAME}-${TARGET_OS}-x86.tar.gz *"
+]
+
+[tasks.flutter-build]
+script = ["""
+  cd universalworkspace_flutter/
+  flutter pub get
+  flutter packages pub get
+  flutter build ${TARGET_OS} --${BUILD_FLAG} --verbose
+  """]
+script_runner = "@shell"
+
+[tasks.flutter-build-ios]
+script = ["""
+  cd universalworkspace_flutter/
+  flutter pub get
+  flutter build ipa --split-debug-info=./ --obfuscate --verbose
+  """]
+script_runner = "@shell"
+
+[tasks.flutter-build-android]
+script = ["""
+  cd universalworkspace_flutter/
+  flutter pub get
+  flutter build apk --split-per-abi --split-debug-info=./ --obfuscate --verbose
+  """]
+script_runner = "@shell"
+
+[tasks.flutter-build-android-ci]
+script = ["""
+  cd universalworkspace_flutter/
+  flutter pub get
+  flutter build apk --debug
+  """]
+script_runner = "@shell"
+
+[tasks.flutter-build.windows]
+script = [
+  """
+  cd universalworkspace_flutter
+  exec cmd.exe /c flutter pub get
+  exec cmd.exe /c flutter build ${TARGET_OS} --${BUILD_FLAG} --build-name=${APP_VERSION}
+  """,
+]
+script_runner = "@duckscript"
+
+[tasks.pub_get]
+script_runner = "@shell"
+script = ["""
+  cd universalworkspace_flutter
+  flutter clean
+  flutter pub get
+  cd ../
+  """]
+
+[tasks.pub_get.windows]
+script_runner = "@duckscript"
+script = ["""
+  cd ./universalworkspace_flutter/
+  exec cmd.exe /c flutter clean
+  exec cmd.exe /c flutter pub get
+  cd ../
+  """]
+
+[tasks.code_generation]
+script_runner = "@shell"
+script = ["""
+  ./scripts/code_generation/generate.sh
+  """]
+
+[tasks.code_generation.windows]
+script_runner = "@duckscript"
+script = ["""
+  exec scripts/code_generation/generate.cmd
+  """]
+
+[tasks.dry_code_generation]
+script_runner = "@shell"
+script = [
+  """
+  cd universalworkspace_flutter
+  dart run easy_localization:generate -S assets/translations/ -f keys -o locale_keys.g.dart -S assets/translations -s en-US.json
+  dart run build_runner build -d
+  """,
+]
+
+[tasks.dry_code_generation.windows]
+script_runner = "@duckscript"
+script = [
+  """
+  cd ./universalworkspace_flutter/
+  exec cmd.exe /c dart run easy_localization:generate -S assets/translations/ -f keys -o locale_keys.g.dart -S assets/translations -s en-US.json
+  exec cmd.exe /c dart run build_runner build -d
+  """,
+]

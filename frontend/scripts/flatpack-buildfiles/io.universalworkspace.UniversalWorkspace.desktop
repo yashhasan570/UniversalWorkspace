@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=UniversalWorkspace
+Icon=io.universalworkspace.UniversalWorkspace
+Exec=UniversalWorkspace %U
+Categories=Network;Productivity;
+Keywords=Notes
+DBusActivatable=true
+Implements=io.universalworkspace.UniversalWorkspace;

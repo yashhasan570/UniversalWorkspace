@@ -1,0 +1,59 @@
+name: uniflow_infra_ui
+description: A new flutter plugin project.
+version: 0.0.1
+homepage: https://universalworkspace.io
+publish_to: "none"
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: ">=3.10.1"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Thirdparty packages
+
+  styled_widget: ^0.4.1
+  animations: ^2.0.7
+  loading_indicator: ^3.1.0
+  async:
+  url_launcher: ^6.1.11
+  google_fonts: ^6.1.0
+
+  # Federated Platform Interface
+  uniflow_infra_ui_platform_interface:
+    path: uniflow_infra_ui_platform_interface
+  universalworkspace_popover:
+    path: ../universalworkspace_popover
+  uniflow_infra:
+    path: ../uniflow_infra
+  uniflow_svg:
+    path: ../uniflow_svg
+
+  analyzer: 6.11.0
+
+dev_dependencies:
+  build_runner: ^2.4.9
+  provider: ^6.0.5
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.1
+
+flutter:
+  plugin:
+    platforms:
+      # TODO: uncomment android part will fail the Linux build process, will resolve later
+      # android:
+      #   package: com.example.uniflow_infra_ui
+      #   pluginClass: UniflowInfraUIPlugin
+      ios:
+        pluginClass: UniflowInfraUIPlugin
+      macos:
+        pluginClass: UniflowInfraUIPlugin
+      windows:
+        pluginClass: UniflowInfraUIPlugin
+      linux:
+        pluginClass: UniflowInfraUIPlugin
+      web:
+        default_package: uniflow_infra_ui_web

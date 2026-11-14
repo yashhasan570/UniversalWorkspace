@@ -1,0 +1,56 @@
+[package]
+name = "event-integration-test"
+version = "0.1.0"
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+uniflow-core = { workspace = true }
+uniflow-user = { workspace = true }
+uniflow-user-pub = { workspace = true }
+uniflow-folder = { path = "../uniflow-folder", features = ["test_helper"] }
+uniflow-folder-pub = { workspace = true }
+uniflow-database2 = { path = "../uniflow-database2" }
+uniflow-document = { path = "../uniflow-document" }
+uniflow-ai = { workspace = true }
+lib-dispatch = { workspace = true }
+lib-infra = { workspace = true }
+uniflow-server = { path = "../uniflow-server" }
+uniflow-server-pub = { workspace = true }
+uniflow-notification = { workspace = true }
+uniflow-storage = { workspace = true }
+uniflow-storage-pub = { workspace = true }
+uniflow-search = { workspace = true }
+semver = "1.0.23"
+uniflow-error = { workspace = true }
+
+serde.workspace = true
+serde_json.workspace = true
+protobuf.workspace = true
+tokio = { workspace = true, features = ["full"] }
+bytes.workspace = true
+nanoid = "0.4.0"
+tracing.workspace = true
+uuid.workspace = true
+collab = { workspace = true }
+collab-document = { workspace = true }
+collab-folder = { workspace = true }
+collab-database = { workspace = true }
+collab-entity = { workspace = true }
+rand = { version = "0.8.5", features = [] }
+strum = "0.25.0"
+
+[dev-dependencies]
+uuid.workspace = true
+assert-json-diff = "2.0.2"
+chrono = "0.4.31"
+zip.workspace = true
+walkdir = "2.5.0"
+futures = "0.3.31"
+uniflow-ai-pub = { workspace = true }
+serial_test = "2.0.0"
+
+[features]
+dart = ["uniflow-core/dart"]
+single_thread = []

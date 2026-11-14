@@ -1,0 +1,44 @@
+{
+  "type": "page",
+  "data": {},
+  "children": [
+    {
+      "type": "callout",
+      "data": {
+        "delta": [
+          {
+            "insert": "\nLike Universal Workspace? Follow us:\n"
+          },
+          {
+            "attributes": {
+              "href": "https://github.com/yashhasan570/Universal Workspace"
+            },
+            "insert": "GitHub"
+          },
+          {
+            "insert": "\n"
+          },
+          {
+            "attributes": {
+              "href": "https://twitter.com/universalworkspace"
+            },
+            "insert": "Twitter"
+          },
+          {
+            "insert": ": @universalworkspace\n"
+          },
+          {
+            "attributes": {
+              "href": "https://blog-universalworkspace.ghost.io/"
+            },
+            "insert": "Newsletter"
+          },
+          {
+            "insert": "\n"
+          }
+        ],
+        "icon": "🥰"
+      }
+    }
+  ]
+}

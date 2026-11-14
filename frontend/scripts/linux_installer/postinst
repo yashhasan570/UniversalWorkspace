@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+if [ -e /usr/local/bin/UniversalWorkspace ]; then
+    echo "Symlink already exists, skipping."
+else
+    echo "Creating Symlink in /usr/local/bin/universalworkspace"
+    ln -s /opt/UniversalWorkspace/UniversalWorkspace /usr/local/bin/UniversalWorkspace
+fi

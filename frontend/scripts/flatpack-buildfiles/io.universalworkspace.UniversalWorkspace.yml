@@ -1,0 +1,35 @@
+app-id: io.universalworkspace.UniversalWorkspace
+runtime: org.freedesktop.Platform
+runtime-version: '21.08'
+sdk: org.freedesktop.Sdk
+command: UniversalWorkspace
+separate-locales: false
+finish-args:
+  - --share=ipc
+  - --socket=x11
+  - --socket=fallback-x11
+  - --socket=wayland
+  - --socket=pulseaudio
+  - --share=network
+  - --device=all
+modules:
+  - name: universalworkspace
+    buildsystem: simple
+    build-commands:
+      # - ls .
+      - cp -r universalworkspace /app/universalworkspace
+      - chmod +x /app/universalworkspace/UniversalWorkspace
+      - install -Dm644 logo.svg /app/share/icons/hicolor/scalable/apps/io.universalworkspace.UniversalWorkspace.svg
+      - mkdir /app/bin
+      - ln -s /app/universalworkspace/UniversalWorkspace /app/bin/UniversalWorkspace
+      - install -Dm644 io.universalworkspace.UniversalWorkspace.desktop /app/share/applications/io.universalworkspace.UniversalWorkspace.desktop
+    sources:
+      - type: archive
+        url: https://github.com/yashhasan570/universalworkspace/releases/download/0.0.2/UniversalWorkspace-linux-x86.tar.gz
+        sha256: b0dbe669bb9f34a65171adecaf61b02578bab5214d18a54009f0e4ec10665711
+        dest: universalworkspace
+      - type: file
+        path: io.universalworkspace.UniversalWorkspace.desktop
+      - type: file
+        path: logo.svg
+

@@ -1,0 +1,575 @@
+import 'package:universalworkspace/env/cloud_env.dart';
+import 'package:universalworkspace/generated/locale_keys.g.dart';
+import 'package:universalworkspace/startup/startup.dart';
+import 'package:universalworkspace/startup/tasks/universalworkspace_cloud_task.dart';
+import 'package:universalworkspace/startup/tasks/deeplink/deeplink_handler.dart';
+import 'package:universalworkspace/user/application/auth/auth_service.dart';
+import 'package:universalworkspace/user/application/password/password_http_service.dart';
+import 'package:universalworkspace_backend/log.dart';
+import 'package:universalworkspace_backend/protobuf/uniflow-error/code.pb.dart';
+import 'package:universalworkspace_backend/protobuf/uniflow-error/errors.pb.dart';
+import 'package:universalworkspace_backend/protobuf/uniflow-user/protobuf.dart'
+    show UserProfilePB;
+import 'package:universalworkspace_result/universalworkspace_result.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'sign_in_bloc.freezed.dart';
+
+class SignInBloc extends Bloc<SignInEvent, SignInState> {
+  SignInBloc(this.authService) : super(SignInState.initial()) {
+    if (isUniversalWorkspaceCloudEnabled) {
+      deepLinkStateListener =
+          getIt<UniversalWorkspaceCloudDeepLink>().subscribeDeepLinkLoadingState((value) {
+        if (isClosed) return;
+
+        add(SignInEvent.deepLinkStateChange(value));
+      });
+
+      getUniversalWorkspaceCloudUrl().then((baseUrl) {
+        passwordService = PasswordHttpService(
+          baseUrl: baseUrl,
+          authToken:
+              '', // the user is not signed in yet, the auth token should be empty
+        );
+      });
+    }
+
+    on<SignInEvent>(
+      (event, emit) async {
+        await event.when(
+          signInWithEmailAndPassword: (email, password) async =>
+              _onSignInWithEmailAndPassword(
+            emit,
+            email: email,
+            password: password,
+          ),
+          signInWithOAuth: (platform) async => _onSignInWithOAuth(
+            emit,
+            platform: platform,
+          ),
+          signInAsGuest: () async => _onSignInAsGuest(emit),
+          signInWithMagicLink: (email) async => _onSignInWithMagicLink(
+            emit,
+            email: email,
+          ),
+          signInWithPasscode: (email, passcode) async => _onSignInWithPasscode(
+            emit,
+            email: email,
+            passcode: passcode,
+          ),
+          deepLinkStateChange: (result) => _onDeepLinkStateChange(emit, result),
+          cancel: () {
+            emit(
+              state.copyWith(
+                isSubmitting: false,
+                emailError: null,
+                passwordError: null,
+                successOrFail: null,
+              ),
+            );
+          },
+          emailChanged: (email) async {
+            emit(
+              state.copyWith(
+                email: email,
+                emailError: null,
+                successOrFail: null,
+              ),
+            );
+          },
+          passwordChanged: (password) async {
+            emit(
+              state.copyWith(
+                password: password,
+                passwordError: null,
+                successOrFail: null,
+              ),
+            );
+          },
+          switchLoginType: (type) {
+            emit(state.copyWith(loginType: type));
+          },
+          forgotPassword: (email) => _onForgotPassword(emit, email: email),
+          validateResetPasswordToken: (email, token) async =>
+              _onValidateResetPasswordToken(
+            emit,
+            email: email,
+            token: token,
+          ),
+          resetPassword: (email, newPassword) async => _onResetPassword(
+            emit,
+            email: email,
+            newPassword: newPassword,
+          ),
+        );
+      },
+    );
+  }
+
+  final AuthService authService;
+  PasswordHttpService? passwordService;
+  VoidCallback? deepLinkStateListener;
+
+  @override
+  Future<void> close() {
+    deepLinkStateListener?.call();
+    if (isUniversalWorkspaceCloudEnabled && deepLinkStateListener != null) {
+      getIt<UniversalWorkspaceCloudDeepLink>().unsubscribeDeepLinkLoadingState(
+        deepLinkStateListener!,
+      );
+    }
+    return super.close();
+  }
+
+  Future<void> _onDeepLinkStateChange(
+    Emitter<SignInState> emit,
+    DeepLinkResult result,
+  ) async {
+    final deepLinkState = result.state;
+
+    switch (deepLinkState) {
+      case DeepLinkState.none:
+        break;
+      case DeepLinkState.loading:
+        emit(
+          state.copyWith(
+            isSubmitting: true,
+            emailError: null,
+            passwordError: null,
+            successOrFail: null,
+          ),
+        );
+      case DeepLinkState.finish:
+        final newState = result.result?.fold(
+          (s) => state.copyWith(
+            isSubmitting: false,
+            successOrFail: UniflowResult.success(s),
+          ),
+          (f) => _stateFromCode(f),
+        );
+        if (newState != null) {
+          emit(newState);
+        }
+      case DeepLinkState.error:
+        emit(state.copyWith(isSubmitting: false));
+    }
+  }
+
+  Future<void> _onSignInWithEmailAndPassword(
+    Emitter<SignInState> emit, {
+    required String email,
+    required String password,
+  }) async {
+    emit(
+      state.copyWith(
+        isSubmitting: true,
+        emailError: null,
+        passwordError: null,
+        successOrFail: null,
+      ),
+    );
+    final result = await authService.signInWithEmailPassword(
+      email: email,
+      password: password,
+    );
+    emit(
+      result.fold(
+        (gotrueTokenResponse) {
+          getIt<UniversalWorkspaceCloudDeepLink>().passGotrueTokenResponse(
+            gotrueTokenResponse,
+          );
+          return state.copyWith(
+            isSubmitting: false,
+          );
+        },
+        (error) => _stateFromCode(error),
+      ),
+    );
+  }
+
+  Future<void> _onSignInWithOAuth(
+    Emitter<SignInState> emit, {
+    required String platform,
+  }) async {
+    emit(
+      state.copyWith(
+        isSubmitting: true,
+        emailError: null,
+        passwordError: null,
+        successOrFail: null,
+      ),
+    );
+
+    final result = await authService.signUpWithOAuth(platform: platform);
+    emit(
+      result.fold(
+        (userProfile) => state.copyWith(
+          isSubmitting: false,
+          successOrFail: UniflowResult.success(userProfile),
+        ),
+        (error) => _stateFromCode(error),
+      ),
+    );
+  }
+
+  Future<void> _onSignInWithMagicLink(
+    Emitter<SignInState> emit, {
+    required String email,
+  }) async {
+    if (state.isSubmitting) {
+      Log.error('Sign in with magic link is already in progress');
+      return;
+    }
+
+    Log.info('Sign in with magic link: $email');
+
+    emit(
+      state.copyWith(
+        isSubmitting: true,
+        emailError: null,
+        passwordError: null,
+        successOrFail: null,
+      ),
+    );
+
+    final result = await authService.signInWithMagicLink(email: email);
+
+    emit(
+      result.fold(
+        (userProfile) => state.copyWith(
+          isSubmitting: false,
+        ),
+        (error) => _stateFromCode(error),
+      ),
+    );
+  }
+
+  Future<void> _onSignInWithPasscode(
+    Emitter<SignInState> emit, {
+    required String email,
+    required String passcode,
+  }) async {
+    if (state.isSubmitting) {
+      Log.error('Sign in with passcode is already in progress');
+      return;
+    }
+
+    Log.info('Sign in with passcode: $email, $passcode');
+
+    emit(
+      state.copyWith(
+        isSubmitting: true,
+        emailError: null,
+        passwordError: null,
+        successOrFail: null,
+      ),
+    );
+
+    final result = await authService.signInWithPasscode(
+      email: email,
+      passcode: passcode,
+    );
+
+    emit(
+      result.fold(
+        (gotrueTokenResponse) {
+          getIt<UniversalWorkspaceCloudDeepLink>().passGotrueTokenResponse(
+            gotrueTokenResponse,
+          );
+          return state.copyWith(
+            isSubmitting: false,
+          );
+        },
+        (error) => _stateFromCode(error),
+      ),
+    );
+  }
+
+  Future<void> _onSignInAsGuest(
+    Emitter<SignInState> emit,
+  ) async {
+    emit(
+      state.copyWith(
+        isSubmitting: true,
+        emailError: null,
+        passwordError: null,
+        successOrFail: null,
+      ),
+    );
+
+    final result = await authService.signUpAsGuest();
+    emit(
+      result.fold(
+        (userProfile) => state.copyWith(
+          isSubmitting: false,
+          successOrFail: UniflowResult.success(userProfile),
+        ),
+        (error) => _stateFromCode(error),
+      ),
+    );
+  }
+
+  Future<void> _onForgotPassword(
+    Emitter<SignInState> emit, {
+    required String email,
+  }) async {
+    if (state.isSubmitting) {
+      Log.error('Forgot password is already in progress');
+      return;
+    }
+
+    emit(
+      state.copyWith(
+        isSubmitting: true,
+        forgotPasswordSuccessOrFail: null,
+        validateResetPasswordTokenSuccessOrFail: null,
+        resetPasswordSuccessOrFail: null,
+      ),
+    );
+
+    final result = await passwordService?.forgotPassword(email: email);
+
+    result?.fold(
+      (success) {
+        emit(
+          state.copyWith(
+            isSubmitting: false,
+            forgotPasswordSuccessOrFail: UniflowResult.success(true),
+          ),
+        );
+      },
+      (error) {
+        emit(
+          state.copyWith(
+            isSubmitting: false,
+            forgotPasswordSuccessOrFail: UniflowResult.failure(error),
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> _onValidateResetPasswordToken(
+    Emitter<SignInState> emit, {
+    required String email,
+    required String token,
+  }) async {
+    if (state.isSubmitting) {
+      Log.error('Validate reset password token is already in progress');
+      return;
+    }
+
+    Log.info('Validate reset password token: $email, $token');
+
+    emit(
+      state.copyWith(
+        isSubmitting: true,
+        validateResetPasswordTokenSuccessOrFail: null,
+        resetPasswordSuccessOrFail: null,
+      ),
+    );
+
+    final result = await passwordService?.verifyResetPasswordToken(
+      email: email,
+      token: token,
+    );
+
+    result?.fold(
+      (authToken) {
+        Log.info('Validate reset password token success: $authToken');
+
+        passwordService?.authToken = authToken;
+
+        emit(
+          state.copyWith(
+            isSubmitting: false,
+            validateResetPasswordTokenSuccessOrFail: UniflowResult.success(true),
+          ),
+        );
+      },
+      (error) {
+        Log.error('Validate reset password token failed: $error');
+
+        emit(
+          state.copyWith(
+            isSubmitting: false,
+            validateResetPasswordTokenSuccessOrFail: UniflowResult.failure(error),
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> _onResetPassword(
+    Emitter<SignInState> emit, {
+    required String email,
+    required String newPassword,
+  }) async {
+    if (state.isSubmitting) {
+      Log.error('Reset password is already in progress');
+      return;
+    }
+
+    Log.info('Reset password: $email, ${newPassword.hashCode}');
+
+    emit(
+      state.copyWith(
+        isSubmitting: true,
+        resetPasswordSuccessOrFail: null,
+      ),
+    );
+
+    final result = await passwordService?.setupPassword(
+      newPassword: newPassword,
+    );
+
+    result?.fold(
+      (success) {
+        Log.info('Reset password success');
+        emit(
+          state.copyWith(
+            isSubmitting: false,
+            resetPasswordSuccessOrFail: UniflowResult.success(true),
+          ),
+        );
+      },
+      (error) {
+        Log.error('Reset password failed: $error');
+        emit(
+          state.copyWith(
+            isSubmitting: false,
+            resetPasswordSuccessOrFail: UniflowResult.failure(error),
+          ),
+        );
+      },
+    );
+  }
+
+  SignInState _stateFromCode(UniflowError error) {
+    Log.error('SignInState _stateFromCode: ${error.msg}');
+
+    switch (error.code) {
+      case ErrorCode.EmailFormatInvalid:
+        return state.copyWith(
+          isSubmitting: false,
+          emailError: error.msg,
+          passwordError: null,
+        );
+      case ErrorCode.PasswordFormatInvalid:
+        return state.copyWith(
+          isSubmitting: false,
+          passwordError: error.msg,
+          emailError: null,
+        );
+      case ErrorCode.UserUnauthorized:
+        final errorMsg = error.msg;
+        String msg = LocaleKeys.signIn_generalError.tr();
+        if (errorMsg.contains('rate limit') ||
+            errorMsg.contains('For security purposes')) {
+          msg = LocaleKeys.signIn_tooFrequentVerificationCodeRequest.tr();
+        } else if (errorMsg.contains('invalid')) {
+          msg = LocaleKeys.signIn_tokenHasExpiredOrInvalid.tr();
+        } else if (errorMsg.contains('Invalid login credentials')) {
+          msg = LocaleKeys.signIn_invalidLoginCredentials.tr();
+        }
+        return state.copyWith(
+          isSubmitting: false,
+          successOrFail: UniflowResult.failure(
+            UniflowError(msg: msg),
+          ),
+        );
+      default:
+        return state.copyWith(
+          isSubmitting: false,
+          successOrFail: UniflowResult.failure(
+            UniflowError(msg: LocaleKeys.signIn_generalError.tr()),
+          ),
+        );
+    }
+  }
+}
+
+@freezed
+class SignInEvent with _$SignInEvent {
+  // Sign in methods
+  const factory SignInEvent.signInWithEmailAndPassword({
+    required String email,
+    required String password,
+  }) = SignInWithEmailAndPassword;
+  const factory SignInEvent.signInWithOAuth({
+    required String platform,
+  }) = SignInWithOAuth;
+  const factory SignInEvent.signInAsGuest() = SignInAsGuest;
+  const factory SignInEvent.signInWithMagicLink({
+    required String email,
+  }) = SignInWithMagicLink;
+  const factory SignInEvent.signInWithPasscode({
+    required String email,
+    required String passcode,
+  }) = SignInWithPasscode;
+
+  // Event handlers
+  const factory SignInEvent.emailChanged({
+    required String email,
+  }) = EmailChanged;
+  const factory SignInEvent.passwordChanged({
+    required String password,
+  }) = PasswordChanged;
+  const factory SignInEvent.deepLinkStateChange(DeepLinkResult result) =
+      DeepLinkStateChange;
+
+  const factory SignInEvent.cancel() = Cancel;
+  const factory SignInEvent.switchLoginType(LoginType type) = SwitchLoginType;
+
+  // password
+  const factory SignInEvent.forgotPassword({
+    required String email,
+  }) = ForgotPassword;
+
+  const factory SignInEvent.validateResetPasswordToken({
+    required String email,
+    required String token,
+  }) = ValidateResetPasswordToken;
+
+  const factory SignInEvent.resetPassword({
+    required String email,
+    required String newPassword,
+  }) = ResetPassword;
+}
+
+// we support sign in directly without sign up, but we want to allow the users to sign up if they want to
+// this type is only for the UI to know which form to show
+enum LoginType {
+  signIn,
+  signUp,
+}
+
+@freezed
+class SignInState with _$SignInState {
+  const factory SignInState({
+    String? email,
+    String? password,
+    required bool isSubmitting,
+    required String? passwordError,
+    required String? emailError,
+    required UniflowResult<UserProfilePB, UniflowError>? successOrFail,
+    required UniflowResult<bool, UniflowError>? forgotPasswordSuccessOrFail,
+    required UniflowResult<bool, UniflowError>?
+        validateResetPasswordTokenSuccessOrFail,
+    required UniflowResult<bool, UniflowError>? resetPasswordSuccessOrFail,
+    @Default(LoginType.signIn) LoginType loginType,
+  }) = _SignInState;
+
+  factory SignInState.initial() => const SignInState(
+        isSubmitting: false,
+        passwordError: null,
+        emailError: null,
+        successOrFail: null,
+        forgotPasswordSuccessOrFail: null,
+        validateResetPasswordTokenSuccessOrFail: null,
+        resetPasswordSuccessOrFail: null,
+      );
+}

@@ -1,0 +1,28 @@
+name: Sync
+on:
+  schedule:
+    - cron: "30 3 * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Sync from upstream
+        run: |
+          git clone --depth 1 https://github.com/AppFlowy-IO/AppFlowy.git /tmp/upstream
+          rsync -a --delete --exclude .git --exclude .github --exclude scripts /tmp/upstream/ ./
+          rm -rf /tmp/upstream
+      - name: Re-apply rebrand
+        run: python3 scripts/migrate.py
+      - name: Commit and push
+        run: |
+          git config user.name "yashhasan570"
+          git config user.email "hasankhalid700570@gmail.com"
+          git add -A
+          git diff --cached --quiet || git commit -m "chore: sync upstream"
+          git push

@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=UniversalWorkspace Launcher
+Exec=UniversalWorkspaceLauncher.sh %u
+MimeType=x-scheme-handler/universalworkspace-flutter;
+NoDisplay=true
