@@ -74,7 +74,7 @@ def main():
         nb = re.sub(r"AppFlowy", "UniversalWorkspace", nb)
         nb = re.sub(r"flowy", "uniflow", nb)
         nb = re.sub(r"Flowy", "Uniflow", nb)
-        if nb != p.name:
+        if nb != p.name and p.exists():
             p.rename(p.with_name(nb))
     for p in sorted(Path(".").rglob("*"), key=lambda x: len(x.parts), reverse=True):
         if ".git" in p.parts or not p.is_dir():
