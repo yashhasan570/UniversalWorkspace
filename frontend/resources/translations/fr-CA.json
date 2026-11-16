@@ -1,5 +1,5 @@
 {
-  "appName": "Universal Workspace",
+  "appName": "UniversalWorkspace",
   "defaultUsername": "Moi",
   "welcomeText": "Bienvenue sur @:appName",
   "welcomeTo": "Bienvenue à",
@@ -121,14 +121,14 @@
     "csv": "CSV",
     "copyLink": "Copier le lien",
     "publishToTheWeb": "Publier sur le Web",
-    "publishToTheWebHint": "Créer un site Internet avec Universal Workspace",
+    "publishToTheWebHint": "Créer un site Internet avec UniversalWorkspace",
     "publish": "Partager",
     "unPublish": "Annuler la publication",
     "visitSite": "Visitez le site",
     "exportAsTab": "Exporter en tant que",
     "publishTab": "Partager",
     "shareTab": "Partager",
-    "publishOnUniversalWorkspace": "Partager sur Universal Workspace"
+    "publishOnUniversalWorkspace": "Partager sur UniversalWorkspace"
   },
   "moreAction": {
     "small": "petit",
@@ -392,7 +392,7 @@
         "opacityEmptyError": "L'opacité ne peut pas être vide",
         "opacityRangeError": "L'opacité doit être comprise entre 1 et 100",
         "app": "Application",
-        "uniflow": "Uni",
+        "uniflow": "Uniflow",
         "apply": "Appliquer"
       },
       "layoutDirection": {

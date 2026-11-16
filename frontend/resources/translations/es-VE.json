@@ -1,5 +1,5 @@
 {
-  "appName": "Universal Workspace",
+  "appName": "UniversalWorkspace",
   "defaultUsername": "Mi",
   "welcomeText": "Bienvenido a @:appName",
   "welcomeTo": "Bienvenido a",
@@ -482,7 +482,7 @@
         "opacityEmptyError": "La opacidad no puede estar vacía",
         "opacityRangeError": "La opacidad debe estar entre 1 y 100.",
         "app": "Aplicación",
-        "uniflow": "Uni",
+        "uniflow": "Uniflow",
         "apply": "Aplicar"
       },
       "layoutDirection": {

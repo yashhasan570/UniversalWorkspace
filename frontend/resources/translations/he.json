@@ -1,5 +1,5 @@
 {
-  "appName": "Universal Workspace",
+  "appName": "UniversalWorkspace",
   "defaultUsername": "אני",
   "welcomeText": "ברוך בואך אל @:appName",
   "welcomeTo": "ברוך בואך אל",
@@ -827,7 +827,7 @@
       "customPathPrompt": "אחסון תיקיית הנתונים של @:appName בתיקייה שמסונכרנת עם הענן כגון Google Drive יכול להוות סיכון. אם למסד הנתונים בתיקייה הזאת ניגשים או עורכים ממגוון מקומות בו־זמנית, יכולות לקרות סתירות סנכרון והנתונים יכולים להינזק",
       "importUniversalWorkspaceData": "ייבוא נתונים מתיקיית @:appName חיצונית",
       "importingUniversalWorkspaceDataTip": "מתבצע ייבוא נתונים. נא לא לסגור את היישום",
-      "importUniversalWorkspaceDataDescription": "העתקת נתונים מתיקיית נתונים חיצונית של @:appName ולייבא אותה לתיקיית הנתונים הנוכחית של Universal Workspace",
+      "importUniversalWorkspaceDataDescription": "העתקת נתונים מתיקיית נתונים חיצונית של @:appName ולייבא אותה לתיקיית הנתונים הנוכחית של UniversalWorkspace",
       "importSuccess": "תיקיית הנתונים של @:appName יובאה בהצלחה",
       "importFailed": "ייבוא תיקיית הנתונים של @:appName נכשל",
       "importGuide": "לפרטים נוספים, נא לעיין במסמך המוזכר"
@@ -868,7 +868,7 @@
         "opacityEmptyError": "האטימות לא יכולה להיות ריקה",
         "opacityRangeError": "האטימות חייבת להיות בין 1 ל־100",
         "app": "יישום",
-        "uniflow": "Uni",
+        "uniflow": "Uniflow",
         "apply": "החלה"
       },
       "layoutDirection": {
@@ -2051,7 +2051,7 @@
     "reportPage": "דיווח על עמוד",
     "databaseHasNotBeenPublished": "עדיין אין תמיכה בפרסום למסדי נתונים.",
     "createdWith": "נוצר עם",
-    "downloadApp": "הורדת Universal Workspace",
+    "downloadApp": "הורדת UniversalWorkspace",
     "copy": {
       "codeBlock": "תוכן מקטע הקוד הועתק ללוח הגזירים",
       "imageBlock": "קישור התמונה הועתק ללוח הגזירים",
@@ -2063,7 +2063,7 @@
     "publishFailed": "הפרסום נכשל",
     "unpublishFailed": "ההסתרה נכשלה",
     "noAccessToVisit": "אין גישה לעמוד הזה…",
-    "createWithUniversalWorkspace": "יצירת אתר עם Universal Workspace",
+    "createWithUniversalWorkspace": "יצירת אתר עם UniversalWorkspace",
     "fastWithAI": "מהיר וקל עם בינה מלאכותית.",
     "tryItNow": "לנסות כעת"
   },
@@ -2073,7 +2073,7 @@
     "continueWithGoogle": "להמשיך עם Google",
     "continueWithGithub": "להמשיך עם GitHub",
     "continueWithDiscord": "להמשיך עם Discord",
-    "signInAgreement": "לחיצה על „המשך” להלן, מהווה את אישורך\nלכך שקראת, הבנת והסכמת לתנאים של Universal Workspace",
+    "signInAgreement": "לחיצה על „המשך” להלן, מהווה את אישורך\nלכך שקראת, הבנת והסכמת לתנאים של UniversalWorkspace",
     "and": "וגם",
     "termOfUse": "תנאים",
     "privacyPolicy": "מדיניות פרטיות",

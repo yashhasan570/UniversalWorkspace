@@ -1,5 +1,5 @@
 {
-  "appName": "Universal Workspace",
+  "appName": "UniversalWorkspace",
   "defaultUsername": "Me",
   "welcomeText": "Καλωσορίσατε στο @:appName",
   "welcomeTo": "Καλωσορίσατε στο",
@@ -58,7 +58,7 @@
     "resetWorkspacePrompt": "Η επαναφορά του χώρου εργασίας θα διαγράψει όλες τις σελίδες και τα δεδομένα μέσα σε αυτό. Είστε βέβαιοι ότι θέλετε να επαναφέρετε το χώρο εργασίας? Εναλλακτικά, μπορείτε να επικοινωνήσετε με την ομάδα υποστήριξης για να επαναφέρετε το χώρο εργασίας",
     "hint": "workspace",
     "notFoundError": "Workspace not found",
-    "failedToLoad": "Something went wrong! Failed to load the workspace. Try to close any open instance of Universal Workspace and try again.",
+    "failedToLoad": "Something went wrong! Failed to load the workspace. Try to close any open instance of UniversalWorkspace and try again.",
     "errorActions": {
       "reportIssue": "Report an issue",
       "reportIssueOnGithub": "Report an issue on Github",
@@ -305,8 +305,8 @@
       "cloudServerType": "Cloud server",
       "cloudServerTypeTip": "Please note that it might log out your current account after switching the cloud server",
       "cloudLocal": "Local",
-      "cloudUniversalWorkspace": "Universal Workspace Cloud",
-      "cloudUniversalWorkspaceSelfHost": "Universal Workspace Cloud Self-hosted",
+      "cloudUniversalWorkspace": "UniversalWorkspace Cloud",
+      "cloudUniversalWorkspaceSelfHost": "UniversalWorkspace Cloud Self-hosted",
       "appUniflowCloudUrlCanNotBeEmpty": "The cloud url can't be empty",
       "clickToCopy": "Click to copy",
       "selfHostStart": "If you don't have a server, please refer to the",
@@ -327,12 +327,12 @@
       "historicalUserList": "User login history",
       "historicalUserListTooltip": "This list displays your anonymous accounts. You can click on an account to view its details. Anonymous accounts are created by clicking the 'Get Started' button",
       "openHistoricalUser": "Click to open the anonymous account",
-      "customPathPrompt": "Storing the Universal Workspace data folder in a cloud-synced folder such as Google Drive can pose risks. If the database within this folder is accessed or modified from multiple locations at the same time, it may result in synchronization conflicts and potential data corruption",
-      "importUniversalWorkspaceData": "Import Data from External Universal Workspace Folder",
+      "customPathPrompt": "Storing the UniversalWorkspace data folder in a cloud-synced folder such as Google Drive can pose risks. If the database within this folder is accessed or modified from multiple locations at the same time, it may result in synchronization conflicts and potential data corruption",
+      "importUniversalWorkspaceData": "Import Data from External UniversalWorkspace Folder",
       "importingUniversalWorkspaceDataTip": "Data import is in progress. Please do not close the app",
-      "importUniversalWorkspaceDataDescription": "Copy data from an external Universal Workspace data folder and import it into the current Universal Workspace data folder",
-      "importSuccess": "Successfully imported the Universal Workspace data folder",
-      "importFailed": "Importing the Universal Workspace data folder failed",
+      "importUniversalWorkspaceDataDescription": "Copy data from an external UniversalWorkspace data folder and import it into the current UniversalWorkspace data folder",
+      "importSuccess": "Successfully imported the UniversalWorkspace data folder",
+      "importFailed": "Importing the UniversalWorkspace data folder failed",
       "importGuide": "For further details, please check the referenced document"
     },
     "notifications": {
@@ -363,7 +363,7 @@
         "opacityEmptyError": "Η διαφάνεια δεν μπορεί να είναι κενή",
         "opacityRangeError": "Η διαφάνεια πρέπει να είναι μεταξύ 1 και 100",
         "app": "Εφαρμογή",
-        "uniflow": "Uni",
+        "uniflow": "Uniflow",
         "apply": "Apply"
       },
       "layoutDirection": {
@@ -383,7 +383,7 @@
       "themeUpload": {
         "button": "Μεταφόρτωση",
         "uploadTheme": "Μεταφόρτωση θέματος",
-        "description": "Ανεβάστε το δικό σας θέμα για το Universal Workspace χρησιμοποιώντας το παρακάτω κουμπί.",
+        "description": "Ανεβάστε το δικό σας θέμα για το UniversalWorkspace χρησιμοποιώντας το παρακάτω κουμπί.",
         "loading": "Παρακαλώ περιμένετε ενώ επικυρώνουμε και ανεβάζουμε το θέμα σας...",
         "uploadSuccess": "Το θέμα σας μεταφορτώθηκε με επιτυχία",
         "deletionFailure": "Αποτυχία διαγραφής του θέματος. Προσπαθήστε να το διαγράψετε χειροκίνητα.",
@@ -432,7 +432,7 @@
       "defaultLocation": "Read files and data storage location",
       "exportData": "Export your data",
       "doubleTapToCopy": "Double tap to copy the path",
-      "restoreLocation": "Restore to Universal Workspace default path",
+      "restoreLocation": "Restore to UniversalWorkspace default path",
       "customizeLocation": "Open another folder",
       "restartApp": "Please restart app for the changes to take effect.",
       "exportDatabase": "Export database",
@@ -444,10 +444,10 @@
       "defineWhereYourDataIsStored": "Define where your data is stored",
       "open": "Open",
       "openFolder": "Open an existing folder",
-      "openFolderDesc": "Read and write it to your existing Universal Workspace folder",
+      "openFolderDesc": "Read and write it to your existing UniversalWorkspace folder",
       "folderHintText": "folder name",
       "location": "Creating a new folder",
-      "locationDesc": "Pick a name for your Universal Workspace data folder",
+      "locationDesc": "Pick a name for your UniversalWorkspace data folder",
       "browser": "Browse",
       "create": "Create",
       "set": "Set",
@@ -458,7 +458,7 @@
       "change": "Αλλαγή",
       "openLocationTooltips": "Open another data directory",
       "openCurrentDataFolder": "Άνοιγμα του τρέχοντος φακέλου",
-      "recoverLocationTooltips": "Reset to Universal Workspace's default data directory",
+      "recoverLocationTooltips": "Reset to UniversalWorkspace's default data directory",
       "exportFileSuccess": "Επιτυχής εξαγωγή αρχείου!",
       "exportFileFail": "Η εξαγωγή αρχείου απέτυχε!",
       "export": "Εξαγωγή",
@@ -1058,7 +1058,7 @@
     "duplicateEvent": "Duplicate event"
   },
   "errorDialog": {
-    "title": "Universal Workspace Error",
+    "title": "UniversalWorkspace Error",
     "howToFixFallback": "We're sorry for the inconvenience! Submit an issue on our GitHub page that describes your error.",
     "github": "View on GitHub"
   },

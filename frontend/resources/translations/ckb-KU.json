@@ -1,5 +1,5 @@
 {
-  "appName": "Universal Workspace",
+  "appName": "UniversalWorkspace",
   "defaultUsername": "من",
   "welcomeText": "@:appName بەخێربێن بۆ",
   "welcomeTo": "بەخێربێن بۆ",
@@ -388,7 +388,7 @@
         "opacityEmptyError": "لێڵی ناتوانێت بەتاڵ بێت",
         "opacityRangeError": "لێڵی دەبێت لە نێوان 1 بۆ 100 بێت",
         "app": "App",
-        "uniflow": "Uni",
+        "uniflow": "Uniflow",
         "apply": "به‌کاربردن"
       },
       "layoutDirection": {

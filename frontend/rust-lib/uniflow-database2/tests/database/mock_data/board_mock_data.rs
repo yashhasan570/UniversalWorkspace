@@ -207,7 +207,7 @@ pub fn make_test_board() -> DatabaseData {
             },
             FieldType::Checkbox => row_builder.insert_checkbox_cell("false"),
             FieldType::URL => {
-              row_builder.insert_url_cell("https://github.com/yashhasan570/UniversalWorkspace")
+              row_builder.insert_url_cell("https://github.com/UniversalWorkspace-IO/UniversalWorkspace")
             },
             _ => "".to_owned(),
           };

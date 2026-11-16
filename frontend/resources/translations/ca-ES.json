@@ -1,5 +1,5 @@
 {
-  "appName": "Universal Workspace",
+  "appName": "UniversalWorkspace",
   "defaultUsername": "Jo",
   "welcomeText": "Benvingut a @:appName",
   "welcomeTo": "Benvingut a",
@@ -306,7 +306,7 @@
         "opacityEmptyError": "L'opacitat no pot estar buida",
         "opacityRangeError": "L'opacitat ha d'estar entre 1 i 100",
         "app": "App",
-        "uniflow": "Uni",
+        "uniflow": "Uniflow",
         "apply": "Aplicar"
       },
       "layoutDirection": {

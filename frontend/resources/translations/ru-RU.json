@@ -1,5 +1,5 @@
 {
-  "appName": "Universal Workspace",
+  "appName": "UniversalWorkspace",
   "defaultUsername": "Я",
   "welcomeText": "Добро пожаловать в @:appName",
   "welcomeTo": "Добро пожаловать в",
@@ -37,7 +37,7 @@
     "loginStartWithAnonymous": "Продолжить в анонимной сессии",
     "continueAnonymousUser": "Продолжить в анонимной сессии",
     "continueWithLocalModel": "Продолжить с локальной моделью",
-    "switchToUniversalWorkspaceCloud": "Universal Workspace Cloud",
+    "switchToUniversalWorkspaceCloud": "UniversalWorkspace Cloud",
     "anonymousMode": "Анонимный режим",
     "buttonText": "Войти",
     "signingInText": "Выполняется вход...",
@@ -134,14 +134,14 @@
     "csv": "CSV",
     "copyLink": "Скопировать ссылку",
     "publishToTheWeb": "Опубликовать в Интернете",
-    "publishToTheWebHint": "Создать сайт с помощью Universal Workspace",
+    "publishToTheWebHint": "Создать сайт с помощью UniversalWorkspace",
     "publish": "Опубликовать",
     "unPublish": "Снять с публикации",
     "visitSite": "Посетить сайт",
     "exportAsTab": "Экспортировать как",
     "publishTab": "Опубликовать",
     "shareTab": "Поделиться",
-    "publishOnUniversalWorkspace": "Опубликовать на Universal Workspace",
+    "publishOnUniversalWorkspace": "Опубликовать на UniversalWorkspace",
     "shareTabTitle": "Пригласить к совместной работе",
     "shareTabDescription": "Для простой совместной работы с кем угодно",
     "copyLinkSuccess": "Ссылка скопирована в буфер обмена",
@@ -214,7 +214,7 @@
     "newChat": "AI Чат",
     "inputMessageHint": "Спросить AI @:appName",
     "inputLocalAIMessageHint": "Спросить локальный AI @:appName",
-    "unsupportedCloudPrompt": "Эта функция доступна только при использовании Universal Workspace Cloud",
+    "unsupportedCloudPrompt": "Эта функция доступна только при использовании UniversalWorkspace Cloud",
     "relatedQuestion": "Предложенные",
     "serverUnavailable": "Соединение потеряно. Пожалуйста, проверьте интернет и",
     "aiServerUnavailable": "Служба AI временно недоступна. Пожалуйста, попробуйте позже.",
@@ -863,8 +863,8 @@
       "menuLabel": "Настройки AI",
       "keys": {
         "enableAISearchTitle": "Поиск AI",
-        "aiSettingsDescription": "Выберите предпочтительную модель для работы Universal Workspace AI. Включает GPT-4o, GPT-o3-mini, DeepSeek R1, Claude 3.5 Sonnet и модели, доступные в Ollama",
-        "loginToEnableAIFeature": "Функции AI включены только после входа с Universal Workspace Cloud. Если у вас нет учетной записи Universal Workspace, перейдите в 'Мой аккаунт' для регистрации",
+        "aiSettingsDescription": "Выберите предпочтительную модель для работы UniversalWorkspace AI. Включает GPT-4o, GPT-o3-mini, DeepSeek R1, Claude 3.5 Sonnet и модели, доступные в Ollama",
+        "loginToEnableAIFeature": "Функции AI включены только после входа с UniversalWorkspace Cloud. Если у вас нет учетной записи UniversalWorkspace, перейдите в 'Мой аккаунт' для регистрации",
         "llmModel": "Языковая модель",
         "llmModelType": "Тип языковой модели",
         "downloadLLMPrompt": "Загрузить {}",
@@ -887,12 +887,12 @@
         "restartLocalAI": "Перезапустить",
         "disableLocalAITitle": "Отключить локальный AI",
         "disableLocalAIDescription": "Вы хотите отключить локальный AI?",
-        "localAIToggleTitle": "Universal Workspace Локальный AI (LAI)",
-        "localAIToggleSubTitle": "Запускайте самые продвинутые локальные модели AI в Universal Workspace для максимальной конфиденциальности и безопасности",
+        "localAIToggleTitle": "UniversalWorkspace Локальный AI (LAI)",
+        "localAIToggleSubTitle": "Запускайте самые продвинутые локальные модели AI в UniversalWorkspace для максимальной конфиденциальности и безопасности",
         "offlineAIInstruction1": "Следуйте",
         "offlineAIInstruction2": "инструкции",
         "offlineAIInstruction3": "чтобы включить офлайн-AI.",
-        "offlineAIDownload1": "Если вы еще не скачали Universal Workspace AI, пожалуйста, ",
+        "offlineAIDownload1": "Если вы еще не скачали UniversalWorkspace AI, пожалуйста, ",
         "offlineAIDownload2": "скачайте",
         "offlineAIDownload3": "его сначала",
         "activeOfflineAI": "Активно",
@@ -902,7 +902,7 @@
         "ollamaNotReady": "Сервер Ollama не готов.",
         "pleaseFollowThese": "Пожалуйста, следуйте этим",
         "instructions": "инструкциям",
-        "installOllamaLai": "для настройки Ollama и Universal Workspace Local AI.",
+        "installOllamaLai": "для настройки Ollama и UniversalWorkspace Local AI.",
         "modelsMissing": "Не удалось найти необходимые модели: ",
         "downloadModel": "чтобы скачать их."
       }
@@ -967,7 +967,7 @@
         "deal": {
           "bannerLabel": "Предложение Нового года!",
           "title": "Развивайте свою команду!",
-          "info": "Обновитесь и сэкономьте 10% на планах Pro и Team! Повысьте продуктивность своего рабочего пространства с помощью новых мощных функций, включая Universal Workspace AI.",
+          "info": "Обновитесь и сэкономьте 10% на планах Pro и Team! Повысьте продуктивность своего рабочего пространства с помощью новых мощных функций, включая UniversalWorkspace AI.",
           "viewPlans": "Посмотреть планы"
         }
       }
@@ -1078,7 +1078,7 @@
       },
       "paymentSuccess": {
         "title": "Вы теперь на плане {}!",
-        "description": "Ваш платеж успешно обработан, и ваш план обновлен до Universal Workspace {}. Вы можете просмотреть детали вашего плана на странице Плана"
+        "description": "Ваш платеж успешно обработан, и ваш план обновлен до UniversalWorkspace {}. Вы можете просмотреть детали вашего плана на странице Плана"
       },
       "downgradeDialog": {
         "title": "Вы уверены, что хотите понизить план?",
@@ -1150,8 +1150,8 @@
       "cloudServerType": "Тип облачного сервера",
       "cloudServerTypeTip": "Обратите внимание, что после смены облачного сервера может потребоваться выход из текущей учетной записи",
       "cloudLocal": "Локальный",
-      "cloudUniversalWorkspace": "Universal Workspace Cloud",
-      "cloudUniversalWorkspaceSelfHost": "Universal Workspace Cloud Self-hosted",
+      "cloudUniversalWorkspace": "UniversalWorkspace Cloud",
+      "cloudUniversalWorkspaceSelfHost": "UniversalWorkspace Cloud Self-hosted",
       "appUniflowCloudUrlCanNotBeEmpty": "URL облака не может быть пустым",
       "clickToCopy": "Скопировать в буфер обмена",
       "selfHostStart": "Если у вас нет сервера, пожалуйста, обратитесь к",
@@ -1178,7 +1178,7 @@
       "customPathPrompt": "Хранение папки данных @:appName в облачной синхронизируемой папке, такой как Google Drive, может представлять риски. Если доступ к базе данных в этой папке или ее изменение осуществляется из нескольких мест одновременно, это может привести к конфликтам синхронизации и потенциальному повреждению данных.",
       "importUniversalWorkspaceData": "Импорт данных из внешней папки @:appName",
       "importingUniversalWorkspaceDataTip": "Идет импорт данных. Пожалуйста, не закрывайте приложение",
-      "importUniversalWorkspaceDataDescription": "Копирование данных из внешней папки данных @:appName и импорт их в текущую папку данных Universal Workspace",
+      "importUniversalWorkspaceDataDescription": "Копирование данных из внешней папки данных @:appName и импорт их в текущую папку данных UniversalWorkspace",
       "importSuccess": "Папка данных @:appName успешно импортирована",
       "importFailed": "Не удалось импортировать папку данных @:appName",
       "importGuide": "Для получения более подробной информации, пожалуйста, ознакомьтесь с указанным документом"
@@ -1262,7 +1262,7 @@
         "opacityEmptyError": "Непрозрачность не может быть пустой",
         "opacityRangeError": "Непрозрачность должна быть от 1 до 100",
         "app": "Приложение",
-        "uniflow": "Uni",
+        "uniflow": "Uniflow",
         "apply": "Применить"
       },
       "layoutDirection": {
@@ -2879,7 +2879,7 @@
     "reportPage": "Пожаловаться на страницу",
     "databaseHasNotBeenPublished": "Публикация базы данных пока не поддерживается.",
     "createdWith": "Создано с помощью",
-    "downloadApp": "Скачать Universal Workspace",
+    "downloadApp": "Скачать UniversalWorkspace",
     "copy": {
       "codeBlock": "Содержимое блока кода скопировано в буфер обмена",
       "imageBlock": "Ссылка на изображение скопирована в буфер обмена",
@@ -2892,7 +2892,7 @@
     "publishFailed": "Не удалось опубликовать",
     "unpublishFailed": "Не удалось снять с публикации",
     "noAccessToVisit": "Нет доступа к этой странице...",
-    "createWithUniversalWorkspace": "Создать сайт с помощью Universal Workspace",
+    "createWithUniversalWorkspace": "Создать сайт с помощью UniversalWorkspace",
     "fastWithAI": "Быстро и легко с помощью AI.",
     "tryItNow": "Попробуйте сейчас",
     "onlyGridViewCanBePublished": "Может быть опубликован только вид Таблица",
@@ -2910,7 +2910,7 @@
     "selectWorkspace": "Выберите рабочее пространство",
     "addTo": "Добавить в",
     "duplicateSuccessfully": "Добавлено в ваше рабочее пространство",
-    "duplicateSuccessfullyDescription": "Не установлен Universal Workspace? Загрузка начнется автоматически после нажатия 'Скачать'.",
+    "duplicateSuccessfullyDescription": "Не установлен UniversalWorkspace? Загрузка начнется автоматически после нажатия 'Скачать'.",
     "downloadIt": "Скачать",
     "openApp": "Открыть в приложении",
     "duplicateFailed": "Дублирование не удалось",
@@ -3093,7 +3093,7 @@
     "joinWorkspace": "Присоединиться к рабочему пространству",
     "success": "Вы успешно присоединились к рабочему пространству",
     "successMessage": "Теперь у вас есть доступ ко всем страницам и рабочим пространствам в нем.",
-    "openWorkspace": "Открыть Universal Workspace",
+    "openWorkspace": "Открыть UniversalWorkspace",
     "alreadyAccepted": "Вы уже приняли приглашение",
     "errorModal": {
       "title": "Что-то пошло не так",
@@ -3119,7 +3119,7 @@
     "title": "Одобрить запрос на присоединение к рабочему пространству",
     "requestSummary": "<user/> запрашивает присоединение к <workspace/> и доступ к <page/>",
     "upgrade": "обновиться",
-    "downloadApp": "Скачать Universal Workspace",
+    "downloadApp": "Скачать UniversalWorkspace",
     "approveButton": "Одобрить",
     "approveSuccess": "Успешно одобрено",
     "approveError": "Не удалось одобрить, убедитесь, что лимит плана рабочего пространства не превышен",
@@ -3140,7 +3140,7 @@
   "upgradePlanModal": {
     "title": "Обновиться до Pro",
     "message": "{name} достиг бесплатного лимита участников. Обновитесь до плана Pro, чтобы пригласить больше участников.",
-    "upgradeSteps": "Как обновить план в Universal Workspace:",
+    "upgradeSteps": "Как обновить план в UniversalWorkspace:",
     "step1": "1. Перейдите в Настройки",
     "step2": "2. Нажмите на 'План'",
     "step3": "3. Выберите 'Изменить план'",
@@ -3275,11 +3275,11 @@
     "cancelPlan": {
       "title": "Жаль видеть, что вы уходите",
       "success": "Ваша подписка успешно отменена",
-      "description": "Нам жаль, что вы уходите. Мы будем рады услышать ваш отзыв, чтобы помочь нам улучшить Universal Workspace. Пожалуйста, уделите минутку, чтобы ответить на несколько вопросов.",
+      "description": "Нам жаль, что вы уходите. Мы будем рады услышать ваш отзыв, чтобы помочь нам улучшить UniversalWorkspace. Пожалуйста, уделите минутку, чтобы ответить на несколько вопросов.",
       "commonOther": "Другое",
       "otherHint": "Напишите свой ответ здесь",
       "questionOne": {
-        "question": "Что побудило вас отменить подписку на Universal Workspace Pro?",
+        "question": "Что побудило вас отменить подписку на UniversalWorkspace Pro?",
         "answerOne": "Слишком высокая стоимость",
         "answerTwo": "Функции не соответствовали ожиданиям",
         "answerThree": "Нашел лучшую альтернативу",
@@ -3287,7 +3287,7 @@
         "answerFive": "Проблема с сервисом или технические трудности"
       },
       "questionTwo": {
-        "question": "Насколько вероятно, что вы рассмотрите возможность повторной подписки на Universal Workspace Pro в будущем?",
+        "question": "Насколько вероятно, что вы рассмотрите возможность повторной подписки на UniversalWorkspace Pro в будущем?",
         "answerOne": "Очень вероятно",
         "answerTwo": "Несколько вероятно",
         "answerThree": "Не уверен",
@@ -3302,7 +3302,7 @@
         "answerFour": "Доступ к локальным моделям AI"
       },
       "questionFour": {
-        "question": "Как бы вы описали свой общий опыт использования Universal Workspace?",
+        "question": "Как бы вы описали свой общий опыт использования UniversalWorkspace?",
         "answerOne": "Отлично",
         "answerTwo": "Хорошо",
         "answerThree": "Средне",

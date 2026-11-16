@@ -310,7 +310,7 @@ pub enum AuthType {
   /// It's a local server, we do fake sign in default.
   Local = 0,
   /// Currently not supported. It will be supported in the future when the
-  /// [UniversalWorkspace-Server](https://github.com/yashhasan570/UniversalWorkspace-Server) ready.
+  /// [UniversalWorkspace-Server](https://github.com/UniversalWorkspace-IO/UniversalWorkspace-Server) ready.
   UniversalWorkspaceCloud = 1,
 }
 

@@ -1,20 +1,168 @@
-# Universal Workspace
+<h1 align="center" style="border-bottom: none">
+    <b>
+        <a href="https://www.universalworkspace.com">Universal Workspace</a><br>
+    </b>
+    ⭐️  The Open Source Alternative To Notion  ⭐️ <br>
+</h1>
 
-Self-hosted notes, docs, and project boards with databases and collaboration, all offline-first.
+<p align="center">
+Universal Workspace is the AI workspace where you achieve more without losing control of your data
+</p>
 
-## Features
+<p align="center">
+<a href="https://discord.gg/9Q2xaN37tV"><img src="https://img.shields.io/badge/Universal Workspace.IO-discord-orange"></a>
+<a href="https://github.com/Universal Workspace-IO/universalworkspace"><img src="https://img.shields.io/github/stars/Universal Workspace-IO/universalworkspace.svg?style=flat&logo=github&colorB=deeppink&label=stars"></a>
+<a href="https://github.com/Universal Workspace-IO/universalworkspace"><img src="https://img.shields.io/github/forks/Universal Workspace-IO/universalworkspace.svg"></a>
+<a href="https://opensource.org/licenses/AGPL-3.0"><img src="https://img.shields.io/badge/license-AGPL-purple.svg" alt="License: AGPL"></a>
 
-- Rich-text documents with blocks, kanban boards, grids, and calendars
-- Embedded databases: fields, filters, sorts, and relations
-- Offline-first: local data, optional self-hosted cloud sync
-- Desktop (Windows, macOS, Linux) and mobile (Android, iOS)
-- Open file format, self-hostable backend
+</p>
 
-## Install
+<p align="center">
+    <a href="https://www.universalworkspace.com"><b>Website</b></a> •
+    <a href="https://forum.universalworkspace.io/"><b>Forum</b></a> •
+    <a href="https://discord.gg/9Q2xaN37tV"><b>Discord</b></a> •
+    <a href="https://www.reddit.com/r/Universal Workspace"><b>Reddit</b></a> •
+    <a href="https://twitter.com/universalworkspace"><b>Twitter</b></a>
+</p>
 
-- Download a prebuilt binary from the releases page
-- Build from source: Flutter SDK 3.x + Rust; see `frontend/scripts/` for dev commands
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/1c12d629-40a0-4f35-9451-97498cf31a25" alt="Universal Workspace Kanban Board for To-dos" width="1040" />
+</p>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/0cff82d3-3e40-4057-a5fa-b2e9be8dd863" alt="Universal Workspace Databases for Tasks and Projects" width="1040" />
+</p>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/388224f4-0792-4e75-96d1-f1c671b298a3" alt="Database row page with comments" width="1040" />
+</p>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/ae0cadf2-bb6f-496e-8f84-4916dce1fa62" alt="Beautiful docs for notes and reports" width="1040" />
+</p>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/619ea154-f714-4859-ad28-4f0bdf5028f7" alt="Team wikis with ask AI" width="1040" />
+</p>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/5841c491-b564-4a26-b9b6-191def430911" alt="Mobile workspace and AI summaries" width="1040" />
+</p>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/c2ba6bb8-746c-4743-9393-d008a669be95" alt="Mobile collaboration and database properties" width="1040" />
+</p>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/e83dd1a3-4975-4d0e-91a1-9eb6e0d248cd" alt="Mobile document editing and blocks" width="1040" />
+</p>
 
-## Contact
+## User Installation
 
-Telegram: [@johnconstantine570](https://t.me/johnconstantine570)
+- [Download Universal Workspace Desktop (macOS, Windows, and Linux)](https://github.com/Universal Workspace-IO/Universal Workspace/releases)
+- Other
+  channels: [FlatHub](https://flathub.org/apps/io.universalworkspace.Universal Workspace), [Snapcraft](https://snapcraft.io/universalworkspace), [Sourceforge](https://sourceforge.net/projects/universalworkspace/)
+- Available on
+    - [App Store](https://apps.apple.com/app/universalworkspace/id6457261352): iPhone
+    - [Play Store](https://play.google.com/store/apps/details?id=io.universalworkspace.universalworkspace): Android 10 or above; ARMv7 is
+      not supported
+- [Self-hosting Universal Workspace](https://universalworkspace.com/docs/Step-by-step-Self-Hosting-Guide---From-Zero-to-Production)
+- [Source](https://docs.universalworkspace.io/docs/documentation/universalworkspace/from-source)
+
+## Built With
+
+- [Flutter](https://flutter.dev/)
+
+- [Rust](https://www.rust-lang.org/)
+
+## Stay Up-to-Date
+
+<p align="center"><img src="https://github.com/Universal Workspace-IO/universalworkspace/blob/main/doc/imgs/howtostar.gif" alt="Universal Workspace Github - how to star the repo" width="100%" /></p>
+
+## Getting Started with development
+
+Please view the [documentation](https://docs.universalworkspace.io/docs/documentation/universalworkspace/from-source) for OS specific
+development instructions
+
+## Roadmap
+
+- [Universal Workspace Roadmap ReadMe](https://docs.universalworkspace.io/docs/universalworkspace/roadmap)
+- [Universal Workspace Public Roadmap](https://github.com/orgs/Universal Workspace-IO/projects/5/views/12)
+
+If you'd like to propose a feature, submit a feature
+request [here](https://github.com/Universal Workspace-IO/Universal Workspace/issues/new?assignees=&labels=&template=feature_request.yaml&title=%5BFR%5D+) <br/>
+If you'd like to report a bug, submit a bug
+report [here](https://github.com/Universal Workspace-IO/Universal Workspace/issues/new?assignees=&labels=&template=bug_report.yaml&title=%5BBug%5D+)
+
+## **Releases**
+
+Please see the [changelog](https://universalworkspace.com/what-is-new) for more details about a given release.
+
+## Contributing
+
+Contributions make the open-source community a fantastic place to learn, inspire, and create. Any contributions you make
+are **greatly appreciated**. Please look
+at [Contributing to Universal Workspace](https://docs.universalworkspace.io/docs/documentation/software-contributions/contributing-to-universalworkspace)
+for details.
+
+If your Pull Request is accepted as it fixes a bug, adds functionality, or makes Universal Workspace's codebase significantly
+easier to use or understand, **Congratulations!** If your administrative and managerial work behind the scenes sustains
+the community, **Congratulations!** You are now an official contributor to Universal Workspace.
+
+## Translations 🌎🗺
+
+[![translation badge](https://inlang.com/badge?url=github.com/Universal Workspace-IO/Universal Workspace)](https://inlang.com/editor/github.com/Universal Workspace-IO/Universal Workspace?ref=badge)
+
+To add translations, you can manually edit the JSON translation files in `/frontend/resources/translations`, use
+the [inlang online editor](https://inlang.com/editor/github.com/Universal Workspace-IO/Universal Workspace), or
+run `npx inlang machine translate` to add missing translations.
+
+## Join the community to build Universal Workspace together
+
+<a href="https://github.com/Universal Workspace-IO/Universal Workspace/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Universal Workspace-IO/Universal Workspace" />
+</a>
+
+## Why Are We Building This?
+
+Notion has been our favourite project and knowledge management tool in recent years because of its aesthetic appeal and
+functionality. Our team uses it daily, and we are on its paid plan. However, as we all know, Notion has its limitations.
+These include weak data security and poor compatibility with mobile devices. Likewise, alternative collaborative
+workplace management tools also have their constraints.
+
+The limitations we encountered using these tools and our past work experience with collaborative productivity tools have
+led to our firm belief that there is a glass ceiling on what's possible for these tools in the future. This emanates
+from the fact that these tools will probably struggle to scale horizontally at some point and be forced to prioritize a
+proportion of customers whose needs differ from the rest. While decision-makers want a workplace OS, it is impossible to
+come up with a one-size fits all solution in such a fragmented market.
+
+When a customer's evolving core needs are not satisfied, they either switch to another or build one from the ground up,
+in-house. Consequently, they either go under another ceiling or buy an expensive ticket to learn a hard lesson. This is
+a requirement for many resources and expertise, building a reliable and easy-to-use collaborative tool, not to mention
+the speed and native experience. The same may apply to individual users as well.
+
+All these restrictions necessitate our mission - to make it possible for anyone to create apps that suit their needs
+well.
+
+- To individuals, we would like to offer Notion's functionality, data security, and cross-platform native experience.
+- To enterprises and hackers, Universal Workspace is dedicated to offering building blocks and collaboration infra services to
+  enable you to make apps on your own. Moreover, you have 100% control of your data. You can design and modify Universal Workspace
+  your way, with a single codebase written in Flutter and Rust supporting multiple platforms armed with long-term
+  maintainability.
+
+We decided to achieve this mission by upholding the three most fundamental values:
+
+- Data privacy first
+- Reliable native experience
+- Community-driven extensibility
+
+We do not claim to outperform Notion in terms of functionality and design, at least for now. Besides, our priority
+doesn't lie in more functionality at the moment. Instead, we would like to cultivate a community to democratize the
+knowledge and wheels of making complex workplace management tools while enabling people and businesses to create
+beautiful things on their own by equipping them with a versatile toolbox of building blocks.
+
+## License
+
+Distributed under the AGPLv3 License. See [`LICENSE.md`](https://github.com/Universal Workspace-IO/Universal Workspace/blob/main/LICENSE) for
+more information.
+
+## Acknowledgments
+
+Special thanks to these amazing projects which help power Universal Workspace:
+
+- [cargo-make](https://github.com/sagiegurari/cargo-make)
+- [contrib.rocks](https://contrib.rocks)
+- [flutter_chat_ui](https://pub.dev/packages/flutter_chat_ui)
