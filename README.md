@@ -11,8 +11,8 @@ Universal Workspace is the AI workspace where you achieve more without losing co
 
 <p align="center">
 <a href="https://discord.gg/9Q2xaN37tV"><img src="https://img.shields.io/badge/Universal Workspace.IO-discord-orange"></a>
-<a href="https://github.com/yashhasan570/UniversalWorkspace"><img src="https://img.shields.io/github/stars/yashhasan570/UniversalWorkspace.svg?style=flat&logo=github&colorB=deeppink&label=stars"></a>
-<a href="https://github.com/yashhasan570/UniversalWorkspace"><img src="https://img.shields.io/github/forks/yashhasan570/UniversalWorkspace.svg"></a>
+<a href="https://github.com/Universal Workspace-IO/universalworkspace"><img src="https://img.shields.io/github/stars/Universal Workspace-IO/universalworkspace.svg?style=flat&logo=github&colorB=deeppink&label=stars"></a>
+<a href="https://github.com/Universal Workspace-IO/universalworkspace"><img src="https://img.shields.io/github/forks/Universal Workspace-IO/universalworkspace.svg"></a>
 <a href="https://opensource.org/licenses/AGPL-3.0"><img src="https://img.shields.io/badge/license-AGPL-purple.svg" alt="License: AGPL"></a>
 
 </p>
@@ -70,7 +70,7 @@ Universal Workspace is the AI workspace where you achieve more without losing co
 
 ## Stay Up-to-Date
 
-<p align="center"><img src="https://github.com/yashhasan570/UniversalWorkspace/blob/main/doc/imgs/howtostar.gif" alt="Universal Workspace Github - how to star the repo" width="100%" /></p>
+<p align="center"><img src="https://github.com/Universal Workspace-IO/universalworkspace/blob/main/doc/imgs/howtostar.gif" alt="Universal Workspace Github - how to star the repo" width="100%" /></p>
 
 ## Getting Started with development
 
@@ -166,7 +166,3 @@ Special thanks to these amazing projects which help power Universal Workspace:
 - [cargo-make](https://github.com/sagiegurari/cargo-make)
 - [contrib.rocks](https://contrib.rocks)
 - [flutter_chat_ui](https://pub.dev/packages/flutter_chat_ui)
-
-## Contact
-
-Questions, problem reports or feedback? Reach us on Telegram: [@johnconstantine570](https://t.me/johnconstantine570)
